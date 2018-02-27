@@ -1,0 +1,27 @@
+{
+  "name": "webcrawler",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VladimirTumbev/webcrawler.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VladimirTumbev/webcrawler/issues"
+  },
+  "homepage": "https://github.com/VladimirTumbev/webcrawler#readme",
+  "dependencies": {
+    "babel-eslint": "^8.2.2",
+    "eslint": "^4.18.1",
+    "eslint-config-google": "^0.9.1",
+    "jquery": "^3.3.1",
+    "jsdom": "^11.6.2"
+  }
+}
