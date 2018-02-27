@@ -1,4 +1,0 @@
-const {
-    JSDOM,
-} = require('jsdom');
-
