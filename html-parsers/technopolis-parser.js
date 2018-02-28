@@ -8,8 +8,8 @@ const {
 } = require('../extract-urls/extract-laptop-urls');
 
 const {
-    getLaptopInfo,
-} = require('../extract-urls/extract-laptop-info');
+    makeReqRecursively,
+} = require('../queue/queue');
 
 const url = 'http://www.technopolis.bg/en/' +
     '/IT/Laptops/c/P11010101?pageselect=100&page=' +
@@ -18,7 +18,10 @@ const pagesSelector = '.paging a';
 const laptopSelector = 'div.text h2 a';
 const baseUrl = 'http://www.technopolis.bg/en//IT/Laptops/c/P11010101';
 const uniquePages = new Set();
+const laptops = [];
+let laptopsArray = [];
 const run = async () => {
+    uniquePages.add(url);
     const pages = await extractPageUrls(url, pagesSelector);
     pages.map((link) => uniquePages.add(link));
     const pagesArray = [...uniquePages];
@@ -27,10 +30,20 @@ const run = async () => {
         const fullUrl = baseUrl + uniquePage;
         return getLaptopUrls(fullUrl, laptopSelector);
     }));
+    const urlsAsOneArray = laptopUrls.reduce((prev, current) => {
+        return prev.concat(current);
+    });
+    await makeReqRecursively(urlsAsOneArray, laptops);
+    laptopsArray = laptops.reduce((prev, current) => {
+        return prev.concat(current);
+    });
 
-    const laptop = await Promise.all(laptopUrls.slice(0, 2)
-        .map((laptopUrl) => getLaptopInfo(laptopUrl)));
-    console.log(laptop);
+    return laptopsArray;
 };
 
-run();
+const test = async () => {
+    const testTest = await run();
+    console.log(testTest.length);
+};
+
+test();
