@@ -11,6 +11,8 @@ const getLaptopInfo = async (url) => {
     const dom = await JSDOM.fromURL(laptopUrl);
     const $ = $init(dom.window);
     const charsSelector = 'table.table-characteristics tbody tr';
+    const priceSelector = 'p.price.new-price.bold';
+    laptop.PRICE = $(priceSelector).text().replace('\n\t\t\t', ' ');
     [...$(charsSelector)].map((tr) => $(tr))
         .map(($tr) => {
             const children = $tr.children().toArray()
@@ -28,3 +30,4 @@ const getLaptopInfo = async (url) => {
 module.exports = {
     getLaptopInfo,
 };
+
