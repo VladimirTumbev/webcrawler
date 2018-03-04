@@ -28,7 +28,6 @@ const runTechnopolis = async () => {
     const pages = await extractPageUrls(url, pagesSelector);
     pages.map((link) => uniquePages.add(link));
     const pagesArray = [...uniquePages];
-    console.log(pagesArray);
     const laptopUrls = await Promise.all(pagesArray.map((uniquePage) => {
         const fullUrl = baseUrl + uniquePage;
         return getLaptopUrls(fullUrl, laptopSelector);

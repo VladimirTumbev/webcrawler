@@ -1,7 +1,7 @@
 /* globals Set */
 const {
     getLaptopUrls,
-} = require('../extract-urls/extract-laptop-urls');
+} = require('../extractors/extract-laptop-urls');
 
 const {
     extractPageUrls,
