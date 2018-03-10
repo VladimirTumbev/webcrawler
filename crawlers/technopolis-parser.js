@@ -43,10 +43,14 @@ const runTechnopolis = async () => {
     return laptopsArray;
 };
 
-const test = async () => {
-    const testTest = await runTechnopolis();
-    console.log(testTest);
-    console.log(testTest.length);
-};
+// const test = async () => {
+//     const testTest = await runTechnopolis();
+//     console.log(testTest);
+//     console.log(testTest.length);
+// };
 
-test();
+// test();
+
+module.exports = {
+    runTechnopolis,
+};

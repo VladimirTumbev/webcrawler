@@ -53,10 +53,14 @@ const runLaptopBg = async () => {
     return laptopbgLaptops;
 };
 
-const test = async () => {
-    const testTest = await runLaptopBg();
-    console.log(testTest);
-    console.log(testTest.length);
-};
+// const test = async () => {
+//     const testTest = await runLaptopBg();
+//     console.log(testTest);
+//     console.log(testTest.length);
+// };
 
-test();
+// test();
+
+module.exports = {
+    runLaptopBg,
+};

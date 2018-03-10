@@ -25,6 +25,7 @@
     "jsdom": "^11.6.2",
     "mysql2": "^1.5.2",
     "sequelize": "^4.35.1",
+    "sequelize-auto-migrations": "^1.0.2",
     "sequelize-cli": "^4.0.0"
   }
 }
