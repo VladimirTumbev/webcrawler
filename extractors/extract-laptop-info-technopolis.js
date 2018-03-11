@@ -22,7 +22,10 @@ const getLaptopInfoTechnopolis = async (url) => {
     const priceSelector = 'p.price.new-price.bold';
     laptop.Source = 'Technopolis';
     laptop.price = $(priceSelector).text()
-        .replace(' ', '').replace('\n\t\t\t', ' ');
+        .replace(' ', '')
+        .replace('\n\t\t\t', ' ')
+        .replace('лв.', '')
+        .trim();
     [...$(charsSelector)].map((tr) => $(tr))
         .forEach(($tr) => {
             const children = $tr.children().toArray()

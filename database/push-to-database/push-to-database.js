@@ -89,19 +89,10 @@ const pushToDataBase = async (laptop) => {
     laptop.brandId = brandId;
     laptop.typeId = typeId;
     const thisLaptop = await laptops.create(laptop);
-
-    // console.log(thisLaptop);
-    const currentLaptopId = thisLaptop.dataValues.id;
-    await laptops.find({
-        where: {
-            id: currentLaptopId,
-        },
-    }).then((currentLaptop) => {
-        currentLaptop.setCharacteristics([ramCharId, memoryCharId,
-            processorCharId, screenCharId, videoCharId, osCharId, colorCharId]);
-    }).catch((e) => {
-        console.log(`${laptop.model} + ${e}`);
-    });
+    await thisLaptop.setCharacteristics([ramCharId, memoryCharId,
+        processorCharId, screenCharId, videoCharId, osCharId, colorCharId,
+    ]);
+    console.log(`Laptop with id: ${thisLaptop.id} added`);
 };
 
 
@@ -120,7 +111,7 @@ const pushToDataBase = async (laptop) => {
 //     Color: 'ЧЕРВЕН',
 // };
 
-const run = async () => {
+const fillDatabase = async () => {
     const laptopBgLaptops = await runLaptopBg();
     const technopolisLaptops = await runTechnopolis();
     // laptopBgLaptops.forEach((element) => {
@@ -132,7 +123,9 @@ const run = async () => {
     //         console.log(`${element.price} has empty string for Model`);
     //     }
     // });
-
+    await laptops.destroy({
+        where: {},
+    });
     await Promise.all(laptopBgLaptops.map(async (laptop) => {
         return await pushToDataBase(laptop);
     }));
@@ -141,4 +134,6 @@ const run = async () => {
     }));
 };
 
-run();
+module.exports = {
+    fillDatabase,
+};

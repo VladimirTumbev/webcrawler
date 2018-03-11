@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "update": "node ./app.js update",
+    "statistics": "node ./app.js statistics",
+    "test": "node ./app.js statistics"
   },
   "repository": {
     "type": "git",

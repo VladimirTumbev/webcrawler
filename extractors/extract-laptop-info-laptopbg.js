@@ -25,7 +25,10 @@ const getLaptopInfoLaptopBg = async (url) => {
     model = model.replace(brand + ' ', '');
     laptop.model = model;
     laptop.price = $(priceSelector).text()
-        .replace('\n', '').replace(' ', '').replace('лв.', ' лв.');
+        .replace('\n', '')
+        .replace(' ', '')
+        .replace('лв.', '')
+        .trim();
     const valuesArray = [...$(charsSelectorValue)].map((td) => $(td))
         .map(($td) => {
             if (!$td.hasClass('') && (!$td.closest('tr').hasClass('extras'))) {
