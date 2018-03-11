@@ -2,11 +2,9 @@
   "name": "webcrawler",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "update": "node ./app.js update",
-    "statistics": "node ./app.js statistics",
-    "test": "node ./app.js statistics"
+
   },
   "repository": {
     "type": "git",
