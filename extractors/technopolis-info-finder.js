@@ -34,7 +34,7 @@ const infoFinder = (children, laptop) => {
         laptop[key] = value;
     } else if (children[0].indexOf('КАПАЦИТЕТ RAM') >= 0) {
         const key = 'RAM';
-        const value = children[1];
+        const value = children[1].trim().replace(' ', '');
         laptop[key] = value;
     } else if (children[0].indexOf('ГРАФИЧНА КАРТА') >= 0) {
         const key = 'Video';

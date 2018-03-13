@@ -5,6 +5,7 @@ const {
     characteristics,
     source,
 } = require('../models');
+require('console.table');
 const Sequelize = require('sequelize');
 const readline = require('readline');
 const rl = readline.createInterface({
@@ -61,8 +62,11 @@ const filterBy = async (char, comparison, value) => {
             .characteristics[0].dataValues.value;
         filteredArray.push(currentLaptop);
     }));
+    // console.log(filteredArray);
     return filteredArray;
 };
+
+// filterBy('ram', 'gt', '8');
 
 const letsPlayAGameFilter = async () => {
     rl.question('Ah, filter is your thing? Fine..' +
@@ -96,8 +100,9 @@ const letsPlayAGameFilter = async () => {
                         }
                     });
                 } else {
-                    resultArr.
-                    forEach((foundLaptop) => console.log(foundLaptop));
+                    console.table(resultArr);
+                    // resultArr.
+                    // forEach((foundLaptop) => console.table(foundLaptop));
                     rl.question('My oh my, a lot of laptops,' +
                         ' not so picky after all, shall we ' +
                         'try your luck again? [y/n]', (anotherAnsower) => {

@@ -6,9 +6,15 @@ const {
     type,
 } = require('../models');
 
-const orderByPrice = async () => {
+const orderByPrice = async (sorting = 'asc') => {
     let allLaptops = await laptops.findAll();
-    allLaptops = await Promise.all(allLaptops.sort((x, y) => x - y)
+    allLaptops = await Promise.all(allLaptops
+        .sort((x, y) => {
+            if (sorting === 'asc') {
+                return parseFloat(x.price) - parseFloat(y.price);
+            }
+            return parseFloat(y.price) - parseFloat(x.price);
+        })
         .map(async (laptop) => {
             const laptopSource = await source.find({
                 where: {
@@ -51,7 +57,7 @@ const orderByPrice = async () => {
             });
             return laptop;
         }));
-    console.log(allLaptops);
+    console.table(allLaptops);
 };
 
 module.exports = {

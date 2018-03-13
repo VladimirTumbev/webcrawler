@@ -25,7 +25,7 @@ const searchBy = async (what) => {
         }],
     });
     const filteredArray = [];
-    await Promise.all(filteredLaptops
+     await Promise.all(filteredLaptops
         .map(async (laptop) => {
             const currentLaptop = {};
             const laptopBrand = await brand.find({
@@ -57,8 +57,8 @@ const letsPlayAGameSearch = async () => {
         console.log(answer);
         const theAnswer = await searchBy(answer);
         if (theAnswer.length === 0) {
-            console.log('Woops, unfortunately we could '+
-            'not find what you were looking for!');
+            console.log('Woops, these were not the '+
+            'droids you are looking for!');
             rl.question('Try again? [y/n] ', (newAnswer) => {
                 if (newAnswer === 'y') {
                     letsPlayAGameSearch();
@@ -69,7 +69,8 @@ const letsPlayAGameSearch = async () => {
                 }
             });
         } else {
-            theAnswer.forEach((foundLaptop) => console.log(foundLaptop));
+            console.table(theAnswer);
+            // theAnswer.forEach((foundLaptop) => console.table(foundLaptop));
             rl.question('Woah, that\'s a lot of laptops '+
             'fancy another go? [y/n] ',
                 async (afterSearchAnswer) => {
